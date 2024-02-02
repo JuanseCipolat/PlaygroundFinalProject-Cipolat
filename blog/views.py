@@ -59,6 +59,5 @@ def detalle_publicacion(request, pk):
 
     return render(request, 'blog/detalle_publicacion.html', {'publicacion': publicacion, 'comentarios': comentarios, 'comentario_form': comentario_form})
 
-@login_required
 def acerca_de(request):
     return render(request, 'blog/acerca_de.html')
