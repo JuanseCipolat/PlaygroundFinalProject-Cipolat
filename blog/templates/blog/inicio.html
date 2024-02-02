@@ -7,6 +7,17 @@
       <h3><a href="{% url 'detalle_publicacion' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
       <p>{{ publicacion.contenido }}</p>
       <p>Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
+
+      <!-- Mostrar comentarios de la publicación -->
+      <h4>Comentarios</h4>
+      {% for comentario in comentarios %}
+        {% if comentario.publicacion == publicacion %}
+          <p>{{ comentario.autor.username }} dijo: {{ comentario.texto }}</p>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Enlace para agregar comentario a la publicación -->
+      <a href="{% url 'detalle_publicacion' pk=publicacion.id %}#agregar-comentario">Agregar Comentario</a>
     </div>
   {% endfor %}
 {% endblock %}

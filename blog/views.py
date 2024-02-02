@@ -8,7 +8,8 @@ from django.contrib import messages
 
 def inicio(request):
     publicaciones = Publicacion.objects.all()
-    return render(request, 'blog/inicio.html', {'publicaciones': publicaciones})
+    comentarios = Comentario.objects.all() 
+    return render(request, 'blog/inicio.html', {'publicaciones': publicaciones, 'comentarios': comentarios})
 
 @login_required
 def crear_post(request):
@@ -39,18 +40,23 @@ def registro(request):
 
     return render(request, 'blog/registro.html', {'form': form})
 
+@login_required
 def detalle_publicacion(request, pk):
     publicacion = get_object_or_404(Publicacion, pk=pk)
     comentarios = Comentario.objects.filter(publicacion=publicacion)
+
     if request.method == 'POST':
         comentario_form = ComentarioForm(request.POST)
         if comentario_form.is_valid():
             comentario = comentario_form.save(commit=False)
             comentario.publicacion = publicacion
+            comentario.autor = request.user  
             comentario.save()
             return redirect('detalle_publicacion', pk=publicacion.pk)
+
     else:
         comentario_form = ComentarioForm()
+
     return render(request, 'blog/detalle_publicacion.html', {'publicacion': publicacion, 'comentarios': comentarios, 'comentario_form': comentario_form})
 
 @login_required

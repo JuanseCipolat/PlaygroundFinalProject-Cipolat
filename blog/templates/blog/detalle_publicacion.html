@@ -1,19 +1,27 @@
 {% extends 'blog/base.html' %}
 
 {% block contenido %}
-  <h2>{{ publicacion.titulo }}</h2>
-  <p>{{ publicacion.contenido }}</p>
-  <p>Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
+  <div>
+    <h2>{{ publicacion.titulo }}</h2>
+    <p>{{ publicacion.contenido }}</p>
+    <p>Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
+  </div>
 
-  <h3>Comentarios</h3>
-  {% for comentario in comentarios %}
-    <p>{{ comentario.autor.username }} dijo: {{ comentario.texto }}</p>
-  {% endfor %}
+  <!-- Comentarios -->
+  <div id="comentarios">
+    <h3>Comentarios</h3>
+    {% for comentario in comentarios %}
+      <p>{{ comentario.autor.username }} dijo: {{ comentario.texto }}</p>
+    {% endfor %}
+  </div>
 
-  <h3>Agregar Comentario</h3>
-  <form method="post">
-    {% csrf_token %}
-    {{ formulario_comentario.as_p }}
-    <button type="submit">Comentar</button>
-  </form>
+  <!-- Formulario para agregar comentario -->
+  <div id="agregar-comentario">
+    <h3>Agregar Comentario</h3>
+    <form method="post" action="{% url 'detalle_publicacion' pk=publicacion.id %}">
+      {% csrf_token %}
+      {{ comentario_form.as_p }}
+      <button type="submit">Agregar Comentario</button>
+    </form>
+  </div>
 {% endblock %}
