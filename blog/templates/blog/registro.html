@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block contenido %}
+  <h2>Registro de usuario</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.username.label_tag }} {{ form.username }}
+    {{ form.password1.label_tag }} {{ form.password1 }}
+    {{ form.password2.label_tag }} {{ form.password2 }}
+    <button type="submit">Registrarse</button>
+  </form>
+
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

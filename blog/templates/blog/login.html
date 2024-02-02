@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block contenido %}
+  <h2>Iniciar Sesión</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.username.label_tag }} {{ form.username }}
+    {{ form.password.label_tag }} {{ form.password }}
+    <button type="submit">Iniciar Sesión</button>
+  </form>
+
+  {% if form.errors %}
+    <p>Tus credenciales no son válidas. Inténtalo de nuevo.</p>
+  {% endif %}
+{% endblock %}

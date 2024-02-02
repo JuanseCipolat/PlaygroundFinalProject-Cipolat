@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block contenido %}
+  <h2>Últimas publicaciones</h2>
+  {% for publicacion in publicaciones %}
+    <div>
+      <h3><a href="{% url 'detalle_publicacion' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
+      <p>{{ publicacion.contenido }}</p>
+      <p>Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}
