@@ -3,7 +3,13 @@
 {% block contenido %}
   <div>
     <h2>{{ publicacion.titulo }}</h2>
-    <p>{{ publicacion.contenido }}</p>
+
+    <!-- Mostrar la imagen si existe -->
+    {% if publicacion.imagen %}
+      <img src="{{ publicacion.imagen.url }}" alt="{{ publicacion.titulo }}">
+    {% endif %}
+
+    <p>Contenido: {{ publicacion.contenido }}</p>
     <p>Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
   </div>
 

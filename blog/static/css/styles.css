@@ -1,13 +1,13 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #f8f9fa; 
+    color: #343a40;
     margin: 0;
     padding: 0;
 }
 
 nav {
-    background-color: #333;
+    background-color: #007bff; 
 }
 
 nav ul {
@@ -30,17 +30,32 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #0056b3; 
 }
 
 .container {
     width: 80%;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #ffffff;
     padding: 20px;
     margin-top: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    margin-bottom: 20px; 
+    border: 1px solid #ddd; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.card-img-top {
+    width: 100%; 
+    border-radius: 10px 10px 0 0; 
+}
+
+.card-body {
+    padding: 20px;
 }
 
 h2 {

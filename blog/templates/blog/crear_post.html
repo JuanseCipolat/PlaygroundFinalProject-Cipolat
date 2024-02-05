@@ -4,9 +4,20 @@
 
 {% block contenido %}
   <h2>Crear un nuevo post</h2>
-  <form method="post" action="{% url 'crear_post' %}">
+  <form method="post" action="{% url 'crear_post' %}" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    
+ 
+    {{ form.titulo.label_tag }}
+    {{ form.titulo }}
+    <br>
+    {{ form.contenido.label_tag }}
+    {{ form.contenido }}
+    <br>
+    {{ form.imagen.label_tag }}
+    {{ form.imagen }}
+    <br>
+
     <button type="submit">Publicar</button>
   </form>
 {% endblock %}

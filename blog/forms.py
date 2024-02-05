@@ -11,7 +11,7 @@ class RegistroForm(UserCreationForm):
 class PublicacionForm(forms.ModelForm):
     class Meta:
         model = Publicacion
-        fields = ['titulo', 'contenido']
+        fields = ['titulo', 'contenido', 'imagen']  # Añadir el campo 'imagen'
 
 class ComentarioForm(forms.ModelForm):
     class Meta:

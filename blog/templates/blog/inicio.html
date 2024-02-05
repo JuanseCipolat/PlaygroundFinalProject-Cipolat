@@ -1,23 +1,31 @@
 {% extends 'blog/base.html' %}
 
 {% block contenido %}
-  <h2>Últimas publicaciones</h2>
-  {% for publicacion in publicaciones %}
-    <div>
-      <h3><a href="{% url 'detalle_publicacion' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
-      <p>{{ publicacion.contenido }}</p>
-      <p>Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
+  {% load static %} 
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2>Últimas publicaciones</h2>
+      {% for publicacion in publicaciones %}
+        <div class="card">
+          <img src="{% if publicacion.imagen %}{{ publicacion.imagen.url }}{% else %}{% static 'img/placeholder.jpg' %}{% endif %}" class="card-img-top" alt="Imagen de la publicación">
+          <div class="card-body">
+            <h3 class="card-title"><a href="{% url 'detalle_publicacion' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
+            <p class="card-text">{{ publicacion.contenido }}</p>
+            <p class="card-text">Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
 
-      <!-- Mostrar comentarios de la publicación -->
-      <h4>Comentarios</h4>
-      {% for comentario in comentarios %}
-        {% if comentario.publicacion == publicacion %}
-          <p>{{ comentario.autor.username }} dijo: {{ comentario.texto }}</p>
-        {% endif %}
+            <!-- Mostrar comentarios de la publicación -->
+            <h4>Comentarios</h4>
+            {% for comentario in comentarios %}
+              {% if comentario.publicacion == publicacion %}
+                <p>{{ comentario.autor.username }} dijo: {{ comentario.texto }}</p>
+              {% endif %}
+            {% endfor %}
+
+            <!-- Enlace para agregar comentario a la publicación -->
+            <a href="{% url 'detalle_publicacion' pk=publicacion.id %}#agregar-comentario">Agregar Comentario</a>
+          </div>
+        </div>
       {% endfor %}
-
-      <!-- Enlace para agregar comentario a la publicación -->
-      <a href="{% url 'detalle_publicacion' pk=publicacion.id %}#agregar-comentario">Agregar Comentario</a>
     </div>
-  {% endfor %}
+  </div>
 {% endblock %}
