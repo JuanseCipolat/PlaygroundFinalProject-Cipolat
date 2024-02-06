@@ -11,7 +11,7 @@ def inicio(request):
     comentarios = Comentario.objects.all() 
     return render(request, 'blog/inicio.html', {'publicaciones': publicaciones, 'comentarios': comentarios})
 
-@login_required
+@login_required(login_url='login')
 def crear_post(request):
     if request.method == 'POST':
         form = PublicacionForm(request.POST)

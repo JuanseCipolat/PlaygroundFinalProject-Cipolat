@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'blog',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -74,10 +75,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Configuración de archivos estáticos y medios
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'publicacion_imagenes')
+MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/'

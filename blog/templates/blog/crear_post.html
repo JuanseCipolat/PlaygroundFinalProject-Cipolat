@@ -3,21 +3,14 @@
 {% block titulo %}Crear Post{% endblock %}
 
 {% block contenido %}
-  <h2>Crear un nuevo post</h2>
-  <form method="post" action="{% url 'crear_post' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    
- 
-    {{ form.titulo.label_tag }}
-    {{ form.titulo }}
-    <br>
-    {{ form.contenido.label_tag }}
-    {{ form.contenido }}
-    <br>
-    {{ form.imagen.label_tag }}
-    {{ form.imagen }}
-    <br>
-
-    <button type="submit">Publicar</button>
-  </form>
+  {% if user.is_authenticated %}
+    <h2>Crear un nuevo post</h2>
+    <form method="post" action="{% url 'crear_post' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Publicar</button>
+    </form>
+  {% else %}
+    <p>Debes iniciar sesión para crear un nuevo post. <a href="{% url 'login' %}">Iniciar Sesión</a></p>
+  {% endif %}
 {% endblock %}
