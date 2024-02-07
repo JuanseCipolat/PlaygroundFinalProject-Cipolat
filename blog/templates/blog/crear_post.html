@@ -5,7 +5,7 @@
 {% block contenido %}
   {% if user.is_authenticated %}
     <h2>Crear un nuevo post</h2>
-    <form method="post" action="{% url 'crear_post' %}">
+    <form method="post" action="{% url 'crear_post' %}" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit">Publicar</button>

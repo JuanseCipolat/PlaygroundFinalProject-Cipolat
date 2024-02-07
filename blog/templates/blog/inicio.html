@@ -13,7 +13,7 @@
             <p class="card-text">{{ publicacion.contenido }}</p>
             <p class="card-text">Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
 
-            <!-- Mostrar comentarios de la publicación -->
+           
             <h4>Comentarios</h4>
             {% for comentario in comentarios %}
               {% if comentario.publicacion == publicacion %}
@@ -21,7 +21,7 @@
               {% endif %}
             {% endfor %}
 
-            <!-- Enlace para agregar comentario a la publicación -->
+            
             <a href="{% url 'detalle_publicacion' pk=publicacion.id %}#agregar-comentario">Agregar Comentario</a>
           </div>
         </div>

@@ -11,7 +11,13 @@ class RegistroForm(UserCreationForm):
 class PublicacionForm(forms.ModelForm):
     class Meta:
         model = Publicacion
-        fields = ['titulo', 'contenido', 'imagen']  
+        fields = ['titulo', 'contenido', 'imagen']
+
+    widgets = {
+        'titulo': forms.TextInput(attrs={'class': 'form-control'}),
+        'contenido': forms.Textarea(attrs={'class': 'form-control', 'rows': 5}),
+        'imagen': forms.FileInput(attrs={'class': 'form-control'})
+    }
 
 class ComentarioForm(forms.ModelForm):
     class Meta:

@@ -5,6 +5,7 @@ from .forms import ComentarioForm, PublicacionForm, RegistroForm
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegistroForm
 from django.contrib import messages
+from django.contrib.auth import logout
 
 def inicio(request):
     publicaciones = Publicacion.objects.all()
@@ -14,7 +15,7 @@ def inicio(request):
 @login_required(login_url='login')
 def crear_post(request):
     if request.method == 'POST':
-        form = PublicacionForm(request.POST)
+        form = PublicacionForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.autor = request.user
@@ -39,6 +40,11 @@ def registro(request):
         form = RegistroForm()
 
     return render(request, 'blog/registro.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Sesión cerrada exitosamente.')
+    return redirect('blog:inicio')
 
 @login_required
 def detalle_publicacion(request, pk):

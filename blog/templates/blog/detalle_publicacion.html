@@ -4,7 +4,7 @@
   <div>
     <h2>{{ publicacion.titulo }}</h2>
 
-    <!-- Mostrar la imagen si existe -->
+    
     {% if publicacion.imagen %}
       <img src="{{ publicacion.imagen.url }}" alt="{{ publicacion.titulo }}">
     {% endif %}
@@ -13,7 +13,7 @@
     <p>Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
   </div>
 
-  <!-- Comentarios -->
+  
   <div id="comentarios">
     <h3>Comentarios</h3>
     {% for comentario in comentarios %}
@@ -21,7 +21,7 @@
     {% endfor %}
   </div>
 
-  <!-- Formulario para agregar comentario -->
+  
   <div id="agregar-comentario">
     <h3>Agregar Comentario</h3>
     <form method="post" action="{% url 'detalle_publicacion' pk=publicacion.id %}">

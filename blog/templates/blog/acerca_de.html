@@ -1,9 +1,27 @@
 {% extends 'blog/base.html' %}
 
-{% block titulo %}Acerca de Mi{% endblock %}
+{% block titulo %}Acerca de Mí{% endblock %}
 
 {% block contenido %}
-  <h2>Acerca de Mi</h2>
-  <p>Proyecto final, curso de python de CODERHOUSE</p>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card my-5">
+          <div class="card-body">
+            <h2 class="card-title text-center">Acerca de Mí</h2>
+            <hr>
+            <p class="card-text">
+              Bienvenido a mi espacio en línea. Soy Juan Sebastian Cipolat, pero muchos me conocen como Juanse o ObiJuan debido a mi fanatismo por Star Wars. Con 39 años de edad, estoy explorando el emocionante mundo de la programación por primera vez como parte del proyecto final del curso de Python en CODERHOUSE (Comisión 56060).
+            </p>
+            <p class="card-text">
+              Siempre he sido apasionado por la informática, los videojuegos y la tecnología en general. Aunque durante mucho tiempo no pude dedicarme al estudio de la programación debido a compromisos laborales y familiares, finalmente encontré la oportunidad de hacerlo gracias a CODERHOUSE. Este curso me ha proporcionado conocimientos que nunca imaginé adquirir en tan poco tiempo.
+            </p>
+            <p class="card-text">
+              Tomo este curso como el punto de partida para sumergirme de lleno en el fascinante mundo de la programación. Mi deseo es continuar aprendiendo y creciendo en esta disciplina que tanto me apasiona. Quiero expresar mi agradecimiento a CODERHOUSE, así como al profesor Esteban Acevedo y a todos los tutores que han sido fundamentales en mi proceso de aprendizaje.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
