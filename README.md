@@ -4,7 +4,7 @@ Proyecto final, curso Python CODERHOUSE Comisión 56060
 
 Aplicacion tipo BLOG:
 
-Este es un proyecto creado para crear posts, los usuarios que se registren pueden crear publicaciones de distinto tipo, subir una imagen al articulo creado y realizar comentarios en publicaciones de otros usuarios o en publicaciones propias. desde el panel de administrador podemos eliminar uduarios y tambien posts que no deseemos.
+Este es un proyecto creado para crear posts, los usuarios que se registren pueden crear publicaciones de distinto tipo, subir una imagen al articulo creado y realizar comentarios en publicaciones de otros usuarios o en publicaciones propias. desde el panel de administrador podemos eliminar usuarios y tambien posts que no deseemos.
 
 
 ## Requisitos
