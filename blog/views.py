@@ -49,18 +49,22 @@ def logout_view(request):
     messages.success(request, 'Sesión cerrada exitosamente.')
     return redirect('inicio')
 
-@login_required
 def detalle_publicacion(request, pk):
     publicacion = get_object_or_404(Publicacion, pk=pk)
     comentarios = Comentario.objects.filter(publicacion=publicacion)
 
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            messages.warning(request, 'Debes iniciar sesión o crear una cuenta para agregar un comentario.')
+            return redirect('login')
+
         comentario_form = ComentarioForm(request.POST)
         if comentario_form.is_valid():
             comentario = comentario_form.save(commit=False)
             comentario.publicacion = publicacion
             comentario.autor = request.user  
             comentario.save()
+            messages.success(request, 'Comentario agregado correctamente.')
             return redirect('detalle_publicacion', pk=publicacion.pk)
 
     else:
