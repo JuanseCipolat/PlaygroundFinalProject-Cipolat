@@ -8,6 +8,9 @@ Aplicacion tipo BLOG:
 
 Este es un proyecto creado para crear posts, los usuarios que se registren pueden crear publicaciones de distinto tipo, subir una imagen al articulo creado y realizar comentarios en publicaciones de otros usuarios o en publicaciones propias. desde el panel de administrador podemos eliminar usuarios y tambien posts que no deseemos.
 
+## Enlace youtube web funcionando
+
+https://youtu.be/MrqX5qb8bso
 
 ## Requisitos
 
