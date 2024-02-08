@@ -52,4 +52,4 @@ Ejecuta el servidor de desarrollo:
 
 python manage.py runserver
 
-Abre tu navegador y visita http://127.0.0.1:8000/.
+Abre tu navegador y visita http://127.0.0.1:8000/
