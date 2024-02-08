@@ -1,31 +1,37 @@
 {% extends 'blog/base.html' %}
 
 {% block contenido %}
-  {% load static %} 
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h2>Últimas publicaciones</h2>
-      {% for publicacion in publicaciones %}
-        <div class="card">
-          <img src="{% if publicacion.imagen %}{{ publicacion.imagen.url }}{% else %}{% static 'img/placeholder.jpg' %}{% endif %}" class="card-img-top" alt="Imagen de la publicación">
-          <div class="card-body">
-            <h3 class="card-title"><a href="{% url 'detalle_publicacion' publicacion.id %}">{{ publicacion.titulo }}</a></h3>
-            <p class="card-text">{{ publicacion.contenido }}</p>
-            <p class="card-text">Publicado por {{ publicacion.autor.username }} el {{ publicacion.fecha_creacion }}</p>
+    <div class="container">
+        
+        <header class="py-5 bg-light border-bottom mb-4 text-center">
+            <h1 class="fw-bolder">Mi Blog</h1>
+            <p class="lead mb-0">Comparte lo que quieras</p>
+        </header>
 
-           
-            <h4>Comentarios</h4>
-            {% for comentario in comentarios %}
-              {% if comentario.publicacion == publicacion %}
-                <p>{{ comentario.autor.username }} dijo: {{ comentario.texto }}</p>
-              {% endif %}
-            {% endfor %}
-
+        <div class="row">
             
-            <a href="{% url 'detalle_publicacion' pk=publicacion.id %}#agregar-comentario">Agregar Comentario</a>
-          </div>
+            <div class="col-lg-8">
+                {% for publicacion in publicaciones %}
+                    <div class="card mb-4">
+                        <a href="{% url 'detalle_publicacion' pk=publicacion.id %}">
+                            <img class="card-img-top" src="{{ publicacion.imagen.url }}" alt="Imagen de la publicación" />
+                        </a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{ publicacion.fecha_creacion|date:"d F Y" }}</div>
+                            <h2 class="card-title">{{ publicacion.titulo }}</h2>
+                            <p class="card-text">{{ publicacion.contenido|truncatewords:30 }}</p>
+                            <a class="btn btn-primary" href="{% url 'detalle_publicacion' pk=publicacion.id %}">Leer más →</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-      {% endfor %}
     </div>
-  </div>
+
+    
+    <footer class="bg-light py-4 text-center">
+        <div class="container">
+            <p class="mb-0">© {% now "Y" %} Mi Blog. Todos los derechos reservados. | Fecha y hora: {% now "d F Y H:i:s" %}</p>
+        </div>
+    </footer>
 {% endblock %}

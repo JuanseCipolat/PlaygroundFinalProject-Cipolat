@@ -1,5 +1,7 @@
 # PlaygroundFinalProject-Cipolat
 
+Alumno: Juan Sebastian Cipolat
+
 Proyecto final, curso Python CODERHOUSE Comisión 56060
 
 Aplicacion tipo BLOG:

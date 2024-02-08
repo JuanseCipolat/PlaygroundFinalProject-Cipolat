@@ -1,15 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from django.contrib import messages
 from .models import Publicacion, Comentario
 from .forms import ComentarioForm, PublicacionForm, RegistroForm
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import RegistroForm
-from django.contrib import messages
-from django.contrib.auth import logout
 
 def inicio(request):
-    publicaciones = Publicacion.objects.all()
-    comentarios = Comentario.objects.all() 
+    publicaciones = Publicacion.objects.all().order_by('-fecha_creacion')
+    comentarios = Comentario.objects.all()
     return render(request, 'blog/inicio.html', {'publicaciones': publicaciones, 'comentarios': comentarios})
 
 @login_required(login_url='login')
@@ -26,11 +25,15 @@ def crear_post(request):
     return render(request, 'blog/crear_post.html', {'form': form})
 
 def registro(request):
+    if request.user.is_authenticated:
+        messages.warning(request, 'Ya estás autenticado. No puedes crear otra cuenta.')
+        return redirect('inicio')
+
     if request.method == 'POST':
         form = RegistroForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Usuario creado correctamente.')
+            messages.success(request, 'Usuario creado correctamente. Inicia sesión para continuar.')
             return redirect('inicio')  
         else:
             for field, errors in form.errors.items():
@@ -44,7 +47,7 @@ def registro(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Sesión cerrada exitosamente.')
-    return redirect('blog:inicio')
+    return redirect('inicio')
 
 @login_required
 def detalle_publicacion(request, pk):
